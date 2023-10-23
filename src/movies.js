@@ -2,30 +2,44 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-moviesArray.map(movie => movie.directors)  
+    return moviesArray.map(el => el.director)
 }
-
-console.log(getAllDirectors(movies))
   
-
   
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
-    moviesArray.filter(function(movie){
-    let spielBergDramas =  movie.director === "Steven Spielberg" && movie.genre.includes('Drama')  })
-    return spielBergDramas
+    let filterMovies = moviesArray.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"))
+    return filterMovies.length
 }
 
-console.log(howManyMovies(movies))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {
-moviesArray.reduce    
+function scoresAverage(moviesArray){
+    if(moviesArray.length === 0 ){return 0}
+    let sum = moviesArray.reduce((accumulator, currentMovie) => {
+        if(currentMovie.score){
+        return accumulator + currentMovie.score
+        } else {
+        return accumulator
+        }
+    },0);
+
+   return Number((sum / moviesArray.length).toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama'));
+
+  if (dramaMovies.length === 0){
+    return 0;
+  }
+  const dramaMoviesScore = dramaMovies.reduce((accumulator, currentMovie) =>  accumulator + currentMovie.score, 0);
+  const averageScore = dramaMoviesScore / dramaMovies.length;
+
+  return parseFloat(averageScore.toFixed(2))
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
