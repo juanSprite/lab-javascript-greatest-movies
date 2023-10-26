@@ -42,7 +42,38 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+
+function orderByYear(movies) {
+
+  const moviesCopy = [...movies]; // Crear una copia del arreglo original
+
+  const sortedMovies = moviesCopy.sort((a, b) => {
+    if (a.year < b.year) {
+      return -1;
+    }
+    if (a.year > b.year) {
+      return 1;
+    }
+    return 0;
+  });
+  
+  const alphabetMovies = sortedMovies.sort((a,b) =>{
+    if (a.year === b.year){
+      if (a.title > b.title){
+        return 1
+      } else if (a.title < b.title){
+        return -1
+      } else {
+        return 0
+      } 
+    }
+  })
+
+  return alphabetMovies;
+}
+
+console.log(orderByYear(movies));
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
